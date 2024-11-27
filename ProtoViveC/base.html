@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pagina Web de vive composta">
+    <title>Vive Composta</title>
+    <link rel="stylesheet" href="/build/css/app.css">
+    <link rel="shortcut icon" href="/src/img/logo_principal.jpg" type="image/x-icon">
+</head>
+<body>
+    <body>
+        <header class="principal">
+            <nav>
+                <a href="index.html" class="Logoinicio">
+                    <picture>
+                        <img src="build/img/Logos/logo_confondo.webp" alt="">
+                    </picture>
+                </a>
+                <li class="linksnav">
+                    <a href="/">INICIO</a>
+                    <a href="#">INGRESAR</a>
+                    <a href="#">CENTROS DE ACOPIO</a>
+                    <a href="#">NOSOTROS</a>
+                    <a href="#">PREGUNTAS FRECUENTES</a>
+                    <a href="#">TESTIMONIOS</a>
+
+                </li>
+            </nav>
+        </header>
+
+        <header class="menumovil">
+            <div class="IconoMenu" onclick="DisplayMenu()">
+                <picture id="MenLog" >
+                    <img src="build/img/Iconos/menuIcono.webp" alt="">
+                </picture>
+            </div>
+            <div id="CardMenu" class="CardMenu" >
+                <picture  id="BotonCierre" >
+                    <img onclick="DisplayMenu()" src="build/img/Iconos/iconoCierre.webp" alt="">
+                </picture>
+                <h2 class="notMargin notPadding">EXIT</h2>
+                <ul class="notMargin">
+                    <a href="/">INICIO</a>
+                    <a href="#">INGRESAR</a>
+                    <a href="#">CENTRO DE ACOPIO</a>
+                    <a href="#">NOSOTROS</a>
+                    <a href="#">PREGUNTAS FRECUENTES</a>
+                    <a href="#">TESTIMONIOS</a>
+                </ul>
+
+            </div>
+                <picture class="LogoPag">
+                    <img src="build/img/Logos/logo_sinFondo.webp" alt="ViveComposta">
+                </picture>
+        </header>
+        <main>
+            <h2 class="centrado">Informacion  de la seccion de la pagina</h2>
+            
+           <style>
+                main{
+                    margin: 5%;
+                    display: block;
+                    border: 2px solid black;
+                    padding: 2%;
+                }
+                main >h2{
+                    text-transform: uppercase;
+                }
+           </style>
+
+        </main>
+        <footer class="footGeneral">
+            <div>
+                <p>Nos encontramos ubicados en blba lba lba lbbla bla bla bla bla bla bla bla bla bla bla bla
+                    bla bla bla bla bla bla bla bla bla bal bla bla bla bla bla bla bla bla bla bla bla bla bla  
+                </p>
+                <a href="liberacion_de_servicio.pdf" class="aviso notMargin notPadding">
+                    <strong>Aviso de privacidad </strong>
+                </a>
+            </div>
+            <div class="Redes">
+                <a href="https://www.facebook.com/Vivecomposta" target="_blank">
+                    <img src="./build/img/Redes_Sociales/IconoFacebook.webp"  alt="Facebook" >
+                </a>
+                <a href="https://www.instagram.com/vive_composta/?hl=es-la" target="_blank">
+                    <img src="./build/img/Redes_Sociales/InconoInsta.webp"  alt="instagram" >
+                </a>
+                <a href="https://www.tiktok.com/@vive_composta" target="_blank">
+                    <img src="./build/img/Redes_Sociales/IconoTiktok.webp" alt="TikTok" >
+                </a>
+                <a href="https://wa.me/5215574580663?text=Hola%20me%20gustaría%20más%20información" target="_blank">
+                    <img src="./build/img/Redes_Sociales/whatsapp.webp" alt="whatsapp">
+                </a>
+            </div>
+        </footer>
+
+    <script src="build/js/app.js"></script>
+    <script src="build/js/modernizr.js"></script>
+</body>
+</html>

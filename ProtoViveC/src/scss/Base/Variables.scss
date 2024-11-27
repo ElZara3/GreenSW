@@ -1,0 +1,43 @@
+// Variables de fuentes
+$Texto_titulos: "Futura_Hv";
+$Texto_titulos_italica: "Futura_Hv_Italic";
+$Texto_letra: "Futura_Bk";
+$Texto_letra_italica: "Futura_Bk_Italic";
+
+$gris-html: rgb(219, 219, 219);
+$blanco: white;
+$negro: black;
+$amarillo: rgb(255, 224, 0);
+$shadow-gray: rgba(0, 0, 0, 0.5);
+$Text_color: rgb(80, 43, 29);
+$Hover_gray: rgba(255, 255, 255, 0.4);
+$gris_menuMovil: rgb(173, 168, 161);
+
+// Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1200px;
+$desktopXL: 1400px;
+
+
+// Cargar fuentes
+@font-face {
+    font-family: $Texto_titulos;
+    src: url("/Fuentes/Futura_Hv/FutuHv.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_titulos_italica;
+    src: url("/Fuentes/Futura_Hv/FutuHvIt.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra;
+    src: url("/Fuentes/Futura_BK/FutuBk.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra_italica;
+    src: url("/Fuentes/Futura_BK/FutuBkIt.ttf") format("truetype");
+    font-display: swap;
+}
