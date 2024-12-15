@@ -1,0 +1,10 @@
+@forward 'Base';
+@forward 'principales';
+
+//Para el desarrollo del proyecto se usa el metodo MOVILE FIRST;
+//El estilo siempre va a ser siempre desplegado:
+//Agregamos los estilos de las paginas internas, cada subcarpeta tiene un index
+//asi lo podremos poner aqui y dentro de cada sub carpeta, si queremos agregar otra hoja sass
+//Tiene que tener "_" antes del titulo por ejemplo "_Ejemplo.sass" y se agregan sin el guion bajo
+
+@forward 'Internas';
