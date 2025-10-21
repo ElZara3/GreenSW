@@ -1,0 +1,31 @@
+{
+  "name": "proyecto-vivecomposta",
+  "version": "1.0.0",
+  "description": "Creacion de aplicacion",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "keywords": [
+    "SASS",
+    "NPM",
+    "Gulp"
+  ],
+  "author": "GreenSW Team",
+  "license": "ISC",
+  "devDependencies": {
+    "glob": "^11.0.3",
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-terser": "^2.1.0",
+    "gulplog": "^2.2.0",
+    "sass": "^1.93.0",
+    "sharp": "^0.33.5"
+  },
+  "main": "proyecto vive composta",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "gulp-concat": "^2.6.1"
+  }
+}
