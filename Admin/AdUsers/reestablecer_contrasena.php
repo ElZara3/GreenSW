@@ -30,6 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['progreso_anterior'] = json_decode($_POST['progreso_cubetas'], true);
     $_SESSION['cubetasAnteriores'] = json_decode($_POST['cubetas_restantes'], true);
     $_SESSION['metaAnterior'] = json_decode($_POST['meta_alcanzada'], true);
+
+    /* Obtenemos la info del usuario por la variable */
+    $UsuarioActual = $_SESSION['usuario_previo'];
+    $_SESSION['InfodeUsuario'] = $UsuarioActual['InformacionUsuario'];
 }
 header ('Location: busqueda.php');
 exit;

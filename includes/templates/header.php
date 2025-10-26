@@ -8,10 +8,11 @@
     <meta name="keywords" content="residuos orgánicos, composta, ViveComposta, Empresa de reciclaje, clientes, comunidad">
     <meta name="author" content="<?php echo $inicio ? "Equipo GreenSW" : "David Zaragoza, Diego Fuentes, Aletia Villasis, Alejandro Medina";?>">
     <title>Vive Composta</title>
-
-    <link rel="stylesheet" href="/build_previo/css/app.css">
+    <link rel="stylesheet" href="/build/css/app.css">
     <!-- css sobreescrito del anterior -->
-    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="/build_previo/css/app.css">
+    
+    
     <script src="build/js/bundle.js"></script>
     <link rel="shortcut icon" href="/build_previo/img/Logos/3vc_isotipo.webp" type="image/x-icon">
 

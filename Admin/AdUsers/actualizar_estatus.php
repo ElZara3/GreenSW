@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_usuario'])) {
             $_SESSION['progreso_anterior'] = $_POST['progreso_anterior'];
             $_SESSION['cubetasAnteriores'] = $_POST['cubetas_anteriores'];
             $_SESSION['metaAnterior'] = $_POST['meta_anterior'];
+            //Seccion para repgresar la infor del usuario
+            $_SESSION['InfodeUsuario'] = $_POST['informacion_usuario'] ?? '';
 
             $_SESSION['mensajeActualizacion'] = '<h3 class="mensajeEstatusDeBolsaAtualizado" >¡Estatus de bolsas entregadas actualizado!</h3>';
         } else {

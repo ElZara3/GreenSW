@@ -1,0 +1,62 @@
+// Variables de fuentes
+$Texto_titulos: "Futura_Hv";
+$Texto_titulos_italica: "Futura_Hv_Italic";
+$Texto_letra: "Futura_Bk";
+$Texto_letra_italica: "Futura_Bk_Italic";
+
+$ColorFondo: rgb(248, 244, 229);
+$blanco: white;
+$negro: black;
+$amarillo: rgb(251, 223, 15);
+$Cafe: rgb(81, 43, 28);
+$Verde: rgb(133,188,75);
+$amarilloTit: rgb(255,218,2);
+$amarilloLugares: rgb(223,177,73);
+$CafeUbicaciones: rgb(104,33,10);
+$azul: rgb(113, 113, 255);
+$VerdeExito: rgb(35, 241, 35);
+$Rojo: rgb(255, 0, 0);
+$ColorParaFondoErrores: #ccc;
+$amarillo_sombra: rgba(255, 217, 2, 0.5);
+$VerdeTitUb: rgb(43, 160, 59);
+$VerdeUb: rgb(35,131,76);
+$verdelogin: rgb(58,160,84);
+$CafeClaro: rgb(218, 205, 131);
+$verdeUnete: rgb(15, 158, 77);
+$verdeOscuroUnete:#155c46;
+$CafeClaroTexto:#87371f;
+$CafeTextoUneteBoton: #731b00;
+$gris_sombra: rgba(0, 0, 0, 0.1);
+
+;
+
+// Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1200px;
+$desktopXL: 1400px;
+
+
+// Cargar fuentes
+@font-face {
+    font-family: $Texto_titulos;
+    src: url("./../../Fuentes/Futura_Hv/FutuHv.ttf") format("truetype");
+    font-display: swap;
+}
+//Impementar otra
+
+@font-face {
+    font-family: $Texto_titulos_italica;
+    src: url("./../../Fuentes/Futura_Hv/FutuHvIt.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra;
+    src: url("./../../Fuentes/Futura_BK/FutuBk.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra_italica;
+    src: url("./../../Fuentes/Futura_BK/FutuBkIt.ttf") format("truetype");
+    font-display: swap;
+}

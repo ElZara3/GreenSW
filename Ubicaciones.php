@@ -25,27 +25,27 @@ incluirTemplate('header', true);
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <a href="https://maps.app.goo.gl/xdH86fg7ZXkZvkoF6" target="_blank">
-                    <img src="vectores/ubicaciones/IconosRecortados/ZonaAzul_recortada.svg" class="d-block w-100" alt="1 Satélite zona azul">
+                    <img src="vectores/ubicaciones/IconosRecortados/ZonaAzul_recortada.svg" class="d-flex w-80" alt="1 Satélite zona azul">
                 </a>
                 </div>
                 <div class="carousel-item">
                 <a href="https://maps.app.goo.gl/PLnwbeDvQEaAc18a8" target="_blank">
-                    <img src="vectores/ubicaciones/IconosRecortados/chiluca_recortada.svg" class="d-block w-100" alt="2 Chiluca">
+                    <img src="vectores/ubicaciones/IconosRecortados/chiluca_recortada.svg" class="d-flex w-80" alt="2 Chiluca">
                 </a>
                 </div>
                 <div class="carousel-item">
                 <a href="https://maps.app.goo.gl/NWtuHU2DtiSaXr519" target="_blank">
-                    <img src="vectores/ubicaciones/IconosRecortados/sayavedra_recortada.svg" class="d-block w-100" alt="3 Condado de Sayavedra">
+                    <img src="vectores/ubicaciones/IconosRecortados/sayavedra_recortada.svg" class="d-flex w-80" alt="3 Condado de Sayavedra">
                 </a>
                 </div>
                 <div class="carousel-item">
                 <a href="https://maps.app.goo.gl/xbZMjbiWRfTy8Mhy7" target="_blank">
-                    <img src="vectores/ubicaciones/IconosRecortados/echegaray_recortada.svg" class="d-block w-100" alt="4 Paseo Echegaray">
+                    <img src="vectores/ubicaciones/IconosRecortados/echegaray_recortada.svg" class="d-flex w-80" alt="4 Paseo Echegaray">
                 </a>
                 </div>
                 <div class="carousel-item">
                 <a href="https://maps.app.goo.gl/y81pMNy9489x6tGv5" target="_blank">
-                    <img src="vectores/ubicaciones/IconosRecortados/CentroCivico_Recortada.svg" class="d-block w-100" alt="5 Satelite Centro Civico">
+                    <img src="vectores/ubicaciones/IconosRecortados/CentroCivico_Recortada.svg" class="d-flex w-80" alt="5 Satelite Centro Civico">
                 </a>
                 </div>
             </div>

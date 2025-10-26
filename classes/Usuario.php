@@ -6,7 +6,8 @@ class Usuario extends ActiveRecord{
 
     protected static $tabla = 'usuarios';
     protected static $columnasDB = ['Id','Nombre','ApPat','ApMat','Telefono','FNacimiento','FRegistro',
-                                    'Direccion','Rol','Correo','IdCentroAcopio','CubetasTot','Contrasena'];
+                                    'Direccion','Rol','Correo','IdCentroAcopio','CubetasTot','Contrasena',
+                                    'InformacionUsuario'];
 
     public $Id;
     public $Nombre;
@@ -21,6 +22,7 @@ class Usuario extends ActiveRecord{
     public $IdCentroAcopio;
     public $CubetasTot;
     protected $Contrasena;
+    public $InformacionUsuario;
     
 
     // Constructor recibe array opcional con datos para asignar propiedades
@@ -38,7 +40,8 @@ class Usuario extends ActiveRecord{
             'Correo'        => null,
             'IdCentroAcopio'=> null,
             'CubetasTot'    => 0,
-            'Contrasena'    => null
+            'Contrasena'    => null,
+            'InformacionUsuario' => null
         ];
 
         foreach ($props as $prop => $defecto) {

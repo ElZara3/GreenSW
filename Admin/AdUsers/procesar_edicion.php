@@ -45,8 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['meta_alcanzada'])) {
         $_SESSION['metaAnterior'] = json_decode($_POST['meta_alcanzada'], true);
     }    
-    
-}
+
+    /* Obtenemos especificamente la informacion de usuario */
+    $UsuarioActual = $_SESSION['usuario_previo'] ?? null;
+    $_SESSION['InfodeUsuario'] = $UsuarioActual['InformacionUsuario'] ?? '';
+
+}    
 
 // Redirigir de vuelta a la página anterior
 header("Location: busqueda.php");

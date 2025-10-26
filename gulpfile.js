@@ -30,7 +30,7 @@ export function css(done) {
             sass({
                 outputStyle: 'compressed',
                 includePaths: [
-                    'node_modules/bootstrap/scss' // permite @import "bootstrap"
+                    'node_modules/bootstrap/scss/' // permite @import "bootstrap"
                 ]
             }).on('error', sass.logError)
         )

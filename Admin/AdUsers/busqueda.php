@@ -21,6 +21,9 @@ $cubetasRestantes = $_SESSION['cubetasAnteriores'] ?? 0;
 $metaAlcanzada = isset($_SESSION['metaAnterior']) ? $_SESSION['metaAnterior'] : false;
 $mensajeActualizacion = '';
 $rolActualizado = false;
+$InfoUsuarioActual = $_SESSION['InfodeUsuario'] ?? null;
+
+unset($_SESSION['progreso_anterior'], $_SESSION['cubetasAnteriores'], $_SESSION['metaAnterior'], $_SESSION['InfodeUsuario']);
 
 // Recuperar el centro de acopio seleccionado de la sesión o URL
 $centroAcopioId = isset($_GET['centro']) ? (int)$_GET['centro'] : (isset($_SESSION['centro_actual']) ? $_SESSION['centro_actual'] : null);
@@ -138,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['seleccionarUsuario'])
 
     if ($idUsuario > 0) {
         // Consultar los datos del usuario - MODIFICACIÓN: Incluir el campo Rol
-        $query = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol
+        $query = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol, InformacionUsuario
                  FROM usuarios 
                  WHERE Id = ?";
 
@@ -151,6 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['seleccionarUsuario'])
 
             if ($resultado && mysqli_num_rows($resultado) > 0) {
                 $usuarioSeleccionado = mysqli_fetch_assoc($resultado);
+
+                //Aqui mismo guardar la informacion del usuario en una variable de sesion
+                $InfoUsuarioActual = $usuarioSeleccionado['InformacionUsuario'];
 
                 // Calcular progreso hacia la meta (cada 10 cubetas)
                 $totalCubetas = $usuarioSeleccionado['CubetasTot'];
@@ -339,7 +345,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aumentarCubetas'])) {
             }
 
             // 3. Consultar los datos actualizados del usuario - MODIFICACIÓN: Incluir el campo Rol
-            $queryRefresh = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol
+            $queryRefresh = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol, InformacionUsuario
                            FROM usuarios 
                            WHERE Id = ?";
 
@@ -380,6 +386,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aumentarCubetas'])) {
             $_SESSION['progreso_anterior'] = $progresoCubetas;
             $_SESSION['cubetasAnteriores'] = $cubetasRestantes;
             $_SESSION['metaAnterior'] = $metaAlcanzada;
+
+            /* Variable de info de usuario que se regresa */
+            $_SESSION['InfodeUsuario'] = $usuarioSeleccionado['InformacionUsuario'];
 
             header("Location: busqueda.php");
             exit();
@@ -678,7 +687,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificarCubetas'])) 
             }
 
             // 6. Consultar los datos actualizados del usuario
-            $queryRefresh = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol
+            $queryRefresh = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol, InformacionUsuario
                            FROM usuarios 
                            WHERE Id = ?";
 
@@ -707,6 +716,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificarCubetas'])) 
             $_SESSION['progreso_anterior'] = $progresoCubetas;
             $_SESSION['cubetasAnteriores'] = $cubetasRestantes;
             $_SESSION['metaAnterior'] = $metaAlcanzada;
+
+            /* Seccion para regresar la info del usuario */
+            $_SESSION['InfodeUsuario'] = $usuarioSeleccionado['InformacionUsuario'];
 
             header("Location: busqueda.php");
             exit();
@@ -744,7 +756,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificarCubetas'])) 
 // Procesar cambio de rol
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cambiarRol']) && $_SESSION['rol'] === 'SuperAdmin') {
     $idUsuario = (int)filter_var($_POST['idUsuario'], FILTER_SANITIZE_NUMBER_INT);
-    $nuevoRol = $_POST['nuevoRol'];
+    $nuevoRol = trim($_POST['nuevoRol']);
 
     // Validar que el nuevo rol sea permitido
     if (in_array($nuevoRol, ['Admin', 'User'], true) && $idUsuario > 0) {
@@ -764,18 +776,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cambiarRol']) && $_SE
             }
 
             // Verificar si se hizo algún cambio
+            $mensajeActualizacionRol = "";
             if (mysqli_stmt_affected_rows($stmtRol) > 0) {
-                $mensajeActualizacionRol = "<div class='mensaje-rol-actualizado'>¡Rol actualizado correctamente a <strong>" . $nuevoRol . "</strong>!</div>";
-                $rolActualizado = true;
+                $mensajeActualizacionRol = "<div class='mensaje-rol-actualizado'>¡Rol actualizado correctamente a <strong>" . htmlspecialchars($nuevoRol) . "</strong>!</div>";
             } else {
                 $mensajeActualizacionRol = "<div class='mensaje-rol-sin-cambios'>No se realizaron cambios en el rol.</div>";
             }
 
             mysqli_stmt_close($stmtRol);
 
-            // Refrescar la información del usuario
+            // Consultar los datos actualizados del usuario (IGUAL QUE EN AUMENTAR CUBETAS)
+            $queryRefresh = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol, InformacionUsuario
+                           FROM usuarios 
+                           WHERE Id = ?";
+
+            $stmtRefresh = mysqli_prepare($db, $queryRefresh);
+
+            if (!$stmtRefresh) {
+                throw new Exception("Error al preparar la consulta de actualización: " . mysqli_error($db));
+            }
+
+            mysqli_stmt_bind_param($stmtRefresh, 'i', $idUsuario);
+            
+            if (!mysqli_stmt_execute($stmtRefresh)) {
+                throw new Exception("Error al obtener datos actualizados: " . mysqli_stmt_error($stmtRefresh));
+            }
+
+            $resultadoRefresh = mysqli_stmt_get_result($stmtRefresh);
+
+            if ($resultadoRefresh && mysqli_num_rows($resultadoRefresh) > 0) {
+                $usuarioSeleccionado = mysqli_fetch_assoc($resultadoRefresh);
+
+                // Recalcular progreso (igual que en aumentar cubetas)
+                $totalCubetas = $usuarioSeleccionado['CubetasTot'];
+                $progresoCubetas = $totalCubetas % 10;
+                $cubetasRestantes = 10 - $progresoCubetas;
+                if ($cubetasRestantes == 10 && $totalCubetas > 0) {
+                    $cubetasRestantes = 0;
+                }
+
+                $metaAlcanzada = ($cubetasRestantes == 0 && $totalCubetas > 0);
+
+            } else {
+                throw new Exception("No se pudo obtener la información actualizada del usuario.");
+            }
+
+            mysqli_stmt_close($stmtRefresh);
+
+            // Guardar en sesión y redirigir (PATRÓN PRG)
+            $_SESSION['mensajeActualizacionRol'] = $mensajeActualizacionRol;
+            $_SESSION['usuario_previo'] = $usuarioSeleccionado;
+            $_SESSION['progreso_anterior'] = $progresoCubetas;
+            $_SESSION['cubetasAnteriores'] = $cubetasRestantes;
+            $_SESSION['metaAnterior'] = $metaAlcanzada;
+            $_SESSION['InfodeUsuario'] = $usuarioSeleccionado['InformacionUsuario'];
+
+            header("Location: busqueda.php");
+            exit();
+
+        } catch (Exception $e) {
+            $mensajeActualizacionRol = "<div class='mensaje-rol-error'>Error: " . htmlspecialchars($e->getMessage()) . "</div>";
+
+            // Recargar datos del usuario en caso de error
             if ($idUsuario > 0) {
-                $query = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol FROM usuarios WHERE Id = ?";
+                $query = "SELECT Id, Nombre, ApPat, ApMat, CubetasTot, IdCentroAcopio, Rol, InformacionUsuario FROM usuarios WHERE Id = ?";
                 $stmt = mysqli_prepare($db, $query);
                 if ($stmt) {
                     mysqli_stmt_bind_param($stmt, 'i', $idUsuario);
@@ -783,12 +847,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cambiarRol']) && $_SE
                     $resultado = mysqli_stmt_get_result($stmt);
                     if ($resultado && mysqli_num_rows($resultado) > 0) {
                         $usuarioSeleccionado = mysqli_fetch_assoc($resultado);
+                        $totalCubetas = $usuarioSeleccionado['CubetasTot'];
+                        $progresoCubetas = $totalCubetas % 10;
+                        $cubetasRestantes = 10 - $progresoCubetas;
+                        if ($cubetasRestantes == 10 && $totalCubetas > 0) {
+                            $cubetasRestantes = 0;
+                        }
+                        $metaAlcanzada = ($cubetasRestantes == 0 && $totalCubetas > 0);
                     }
                     mysqli_stmt_close($stmt);
                 }
             }
-        } catch (Exception $e) {
-            $mensajeActualizacionRol = "<div class='mensaje-rol-error'>Error: " . $e->getMessage() . "</div>";
         }
     } else {
         $mensajeActualizacionRol = "<div class='mensaje-rol-error'>Error: Rol no válido o ID de usuario incorrecto.</div>";
@@ -862,6 +931,18 @@ incluirTemplate('header');
     }
 ?>
 
+<?php
+    // Recuperar mensaje de actualización de ROL si existe
+    $mensajeActualizacionRol = '';
+    $rolActualizado = false;
+    if (isset($_SESSION['mensajeActualizacionRol'])) {
+        $mensajeActualizacionRol = $_SESSION['mensajeActualizacionRol'];
+        // Verificar si contiene la clase de éxito para activar el scroll
+        $rolActualizado = (strpos($mensajeActualizacionRol, 'mensaje-rol-actualizado') !== false);
+        unset($_SESSION['mensajeActualizacionRol']); // Limpiar después de usar
+    }
+    ?>
+    
 <!-- Mensaje de actualización ROlsi existe -->
 <?php if (!empty($mensajeActualizacionRol)): ?>
     <?php echo $mensajeActualizacionRol; ?>
@@ -989,6 +1070,8 @@ incluirTemplate('header');
                                     <input type="hidden" name="progreso_anterior" value="<?php echo s($progresoCubetas); ?>">
                                     <input type="hidden" name="cubetas_anteriores" value="<?php echo s($cubetasRestantes); ?>">
                                     <input type="hidden" name="meta_anterior" value="<?php echo s($metaAlcanzada); ?>">
+                                    <!-- Entrada para la infor del usuario -->
+                                    <input type="hidden" name="informacion_usuario" value="<?php echo s($InfoUsuarioActual ?? ''); ?>">
 
                                     <button type="submit" class="BtnEnviarEstatus">Actualizar estatus</button>
                                 </form>
@@ -1007,6 +1090,25 @@ incluirTemplate('header');
                         </section>
                     <?php endif; ?>
 
+                    <!-- FORM DE NOTAS SEPARADO -->
+                    <form action="guardar_informacion_usuario.php" method="POST" class="FormRecuadroInfo">
+                        <div class="RecuadroInfo">
+                            <textarea 
+                                name="informacion_usuario"
+                                placeholder="Sección para notas de usuario..." 
+                                class="input-recuadro"
+                            ><?php echo s($InfoUsuarioActual ?? ''); ?></textarea>
+                            
+                            <input type="hidden" name="id_usuario" value="<?php echo $IdUsuario; ?>">
+                            <input type="hidden" name="usuario_previo_serializado" value="<?php echo s(serialize($usuarioSeleccionado)); ?>">
+                            <input type="hidden" name="progreso_anterior" value="<?php echo s($progresoCubetas); ?>">
+                            <input type="hidden" name="cubetas_anteriores" value="<?php echo s($cubetasRestantes); ?>">
+                            <input type="hidden" name="meta_anterior" value="<?php echo s($metaAlcanzada); ?>">
+                            
+                            <button type="submit" class="BtnGuardarInfo">Guardar información</button>
+                        </div>
+                    </form>
+
                     <form method="POST" action="" class="detalle-usuario__form editar_cubetas_totales" id="formModificar">
                         <input type="hidden" name="idUsuario" value="<?php echo s($usuarioSeleccionado['Id']); ?>">
                         <input type="hidden" name="idCentroAcopio" value="<?php echo s($usuarioSeleccionado['IdCentroAcopio']); ?>">
@@ -1024,6 +1126,7 @@ incluirTemplate('header');
                             </button>
                         </div>
                     </form>
+
                 </div>
             </div>
 
@@ -1223,7 +1326,7 @@ function ObtenerUltimasBolsasUsuario($db, $IdUsuario, $limite = 3) {
     <div class="detalle-usuario__cambiar-rol">
         <h4 class="btnDeRol detalle-usuario__subtitulo">Cambiar Rol</h4>
 
-        <form method="POST" action="" class="detalle-usuario__form-rol">
+        <form method="POST" action="" class="detalle-usuario__form-rol" id="formCambiarRol">
             <input type="hidden" name="idUsuario" value="<?php echo s($usuarioSeleccionado['Id']); ?>">
             <input type="hidden" name="cambiarRol" value="1">
 
@@ -1236,11 +1339,11 @@ function ObtenerUltimasBolsasUsuario($db, $IdUsuario, $limite = 3) {
             <p class="detalle-usuario__rol-label">Nuevo rol:</p>
 
             <div class="detalle-usuario__botones-rol">
-                <button type="button" class="detalle-usuario__btn-rol <?php echo (isset($usuarioSeleccionado['Rol']) && $usuarioSeleccionado['Rol'] === 'Admin') ? 'activo' : ''; ?>">
+                <button type="button" class="detalle-usuario__btn-rol <?php echo (isset($usuarioSeleccionado['Rol']) && $usuarioSeleccionado['Rol'] === 'Admin') ? 'activo' : ''; ?>" data-rol="Admin">
                     Admin
                 </button>
 
-                <button type="button" class="detalle-usuario__btn-rol <?php echo (!isset($usuarioSeleccionado['Rol']) || $usuarioSeleccionado['Rol'] === 'User') ? 'activo' : ''; ?>">
+                <button type="button" class="detalle-usuario__btn-rol <?php echo (!isset($usuarioSeleccionado['Rol']) || $usuarioSeleccionado['Rol'] === 'User') ? 'activo' : ''; ?>" data-rol="User">
                     User
                 </button>
             </div>
@@ -1248,6 +1351,30 @@ function ObtenerUltimasBolsasUsuario($db, $IdUsuario, $limite = 3) {
             <input type="hidden" name="nuevoRol" id="nuevoRol" value="">
         </form>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const botones = document.querySelectorAll('.detalle-usuario__btn-rol');
+        const inputRol = document.getElementById('nuevoRol');
+        const form = document.getElementById('formCambiarRol');
+        
+        botones.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const rolSeleccionado = this.getAttribute('data-rol');
+                
+                // Remover clase activo de todos
+                botones.forEach(b => b.classList.remove('activo'));
+                
+                // Agregar a este
+                this.classList.add('activo');
+                
+                // Asignar valor y enviar
+                inputRol.value = rolSeleccionado;
+                form.submit();
+            });
+        });
+    });
+    </script>
 <?php endif; ?>
 
 <!-- Incluir información adicional del usuario si está seleccionado -->
