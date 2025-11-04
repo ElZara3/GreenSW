@@ -282,9 +282,9 @@
     }
 
     @media (max-width: 768px) {
-        width: 100%;
-        font-size: 1.6rem;
-        padding: 0.8rem;
+        width: 48%;
+        font-size: 1.4rem;
+        padding: 0.7rem 0.5rem;
     }
 
     &-verde {
@@ -321,8 +321,9 @@
     box-sizing: border-box !important;
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
-        padding: 0.8rem;
+        font-size: 1.4rem;
+        padding: 0.7rem 0.5rem;
+        width: 48%;
     }
 }
 
@@ -336,6 +337,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    background-color: transparent;
 
     @include m.tablet {
         min-width: 80%;
@@ -347,6 +349,7 @@
         margin: 1rem auto;
         padding: 1rem;
         background-size: cover;
+        background-color: transparent;
     }
 }
 
@@ -488,6 +491,7 @@
 
 .registro-exitoso__botones {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 1.7rem;
     margin-top: 3rem;
@@ -499,8 +503,9 @@
     }
 
     @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        gap: 0.8rem;
         margin-top: 2rem;
+        flex-wrap: nowrap;
     }
 }
