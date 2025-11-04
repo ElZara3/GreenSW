@@ -3,11 +3,12 @@ $Texto_titulos: "Futura_Hv";
 $Texto_titulos_italica: "Futura_Hv_Italic";
 $Texto_letra: "Futura_Bk";
 $Texto_letra_italica: "Futura_Bk_Italic";
+$FuturaCondensedBT: "Futura_Condensed_BT";
 
 $ColorFondo: rgb(248, 244, 229);
 $blanco: white;
 $negro: black;
-$amarillo: rgb(251, 223, 15);
+$amarillo: #ffdf00;
 $Cafe: rgb(81, 43, 28);
 $Verde: rgb(133,188,75);
 $amarilloTit: rgb(255,218,2);
@@ -27,6 +28,7 @@ $verdeOscuroUnete:#155c46;
 $CafeClaroTexto:#87371f;
 $CafeTextoUneteBoton: #731b00;
 $gris_sombra: rgba(0, 0, 0, 0.1);
+$NaranjaIconoSession: #ef8b34;
 
 ;
 
@@ -59,4 +61,9 @@ $desktopXL: 1400px;
     font-family: $Texto_letra_italica;
     src: url("./../../Fuentes/Futura_BK/FutuBkIt.ttf") format("truetype");
     font-display: swap;
+}
+
+@font-face {
+    font-family: $FuturaCondensedBT;
+    src: url("./../../Fuentes/FutCond/Futura_condensed.otf") format("truetype");
 }

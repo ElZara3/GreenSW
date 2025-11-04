@@ -18,6 +18,7 @@ incluirTemplate('header', true);
             <h3>Pasos a seguir</h3>
                 <h2>¿Cómo formar parte?</h2>
                 <figure class="boton_unete">
+                    <img src="/vectores/Unete/whats_icono.svg" alt="" class="IconoWhats">
                     <a href="https://wa.me/5564702484?text=Holaa!%20Quiero%20formar%20parte%20de%20la%20comunidad" target="_blank">
                         <img src="vectores/Unete/BOTON QUIERO SER PARTE.svg" alt="Boton unete">
                     </a>
@@ -59,6 +60,7 @@ incluirTemplate('header', true);
     <section class="SeParteYFamilias">
         <h2>ÚNETE Y SÉ PARTE DEL CAMBIO...</h2>
         <figure class="boton_unete boton2">
+            <img src="/vectores/Unete/whats_icono.svg" alt="iconoWhats" class="IconoWhats">
             <a href="https://wa.me/5564702484?text=Holaa!%20Quiero%20formar%20parte%20de%20la%20comunidad" target="_blank">
                 <img src="vectores/Unete/BOTON QUIERO SER PARTE.svg" alt="Boton unete">
             </a>

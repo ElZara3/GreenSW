@@ -1,3 +1,6 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
 .Flayer{
     .Flayer_paraDesk video, .Flayer_paraDesk img {
         max-height: 90vh;
@@ -49,4 +52,45 @@ a.botonUb_mobile{
 
 .RedesSocialesInicio #botonRedes{
     border-radius: 10px;
+}
+
+
+//Correciones de diseño desde movile:
+
+.proceso .UnirseProc h3{
+    font-size: 10vw !important;
+    @include m.desktop{
+        font-size: 3.5vw !important;
+    }
+}
+.UbicInicio h3{
+    font-size: 8vw !important;
+    color: v.$VerdeUb !important;
+    @include m.desktop{
+        font-size: 6vw !important;
+    }
+}
+
+.InfoComposta_inicio h2{
+    font-family: v.$FuturaCondensedBT !important;
+    font-size: 8.8vw !important;
+    @include m.tablet{
+        font-size: 3.9vw !important;
+    }   
+    @include m.desktop{
+        font-size: 3.5vw !important;
+    }
+}
+.InfoComposta_inicio a{
+    @include m.desktop{
+        bottom: 30% !important;
+    }
+}
+
+.RedesSocialesInicio h2{
+    font-size: 8vw !important;
+    width: 70% !important;
+    @include m.desktop{
+        font-size: 4vw !important;
+    }
 }

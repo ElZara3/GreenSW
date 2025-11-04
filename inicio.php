@@ -146,7 +146,7 @@
         <img src="vectores/Inicio_vectores/hojas_juntas.svg" alt="" id="hojas2">
 
         <div class="divisiondeinfo">
-            <h2>¡La composta mas nutritiva para tus plantas!</h2>
+            <h2>¡La composta más nutritiva para tus plantas!</h2>
             <video id="VideonutrientesInicio"
                 src="Gifs_videos_media/Section_inicio/COMPOSTA NUTRIENTES.mp4"
                 muted
@@ -251,7 +251,7 @@
             <article class="Cif">
                 <p class="ValorCif animacionCifras">+190</p>
                 <img src="vectores/Nosotros/SIFRAS 3.svg" class="gif-cifras" alt="">
-                <p class="TexCif especial ">De composta producida</p>
+                <p class="TexCif especial ">De composta producida que se ha entregado a los participantes y donado para restauraciones de suelo</p>
             </article>
             <article class="Cif">
                 <p class="ValorCif animacionCifras">+30</p>

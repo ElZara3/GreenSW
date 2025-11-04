@@ -35,7 +35,7 @@ incluirTemplate('header', true);
                 <h1>... Y un sistema exitoso que motiva a las familias mexicanas a adquirir hábitos positivos para generar una mayor conciencia ambiental</h1>
                 <div class="MisionCont">
                     <h2>MISIÓN</h2>
-                    <p>Nuestra mision es crear conciencia y disminuir
+                    <p>Nuestra misión es crear conciencia y disminuir
                         el impacto ambiental de los residuos organicos
                         a través de acciones prácticas y realeas
                     </p>

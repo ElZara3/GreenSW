@@ -18,7 +18,7 @@ incluirTemplate('header', true);
 <main class="Ubicaciones PrimerVista" >
     <h3>Ubicaciones Centros de Acopio</h3>
     <!-- Carrusel para móvil -->
-    <p>Visítanos en alguno de nuestros centros de acopio para realizar tu inscripcion y el cambio de tu cubeta amarilla.</p>
+    <p>Visítanos en alguno de nuestros centros de acopio para realizar tu inscripción y el cambio de tu cubeta amarilla.</p>
     
     <div class="CarruselParaUbicacionesBootstrap mobile-only">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

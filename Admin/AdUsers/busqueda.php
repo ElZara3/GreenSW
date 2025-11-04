@@ -1095,7 +1095,7 @@ incluirTemplate('header');
                         <div class="RecuadroInfo">
                             <textarea 
                                 name="informacion_usuario"
-                                placeholder="Sección para notas de usuario..." 
+                                placeholder="Notas de usuario..." 
                                 class="input-recuadro"
                             ><?php echo s($InfoUsuarioActual ?? ''); ?></textarea>
                             

@@ -1,0 +1,29 @@
+@use 'Base/Mixins' as m;
+@use 'Base/Variables' as v;
+
+.ProcesoFlayer{
+    .Flayerunete{
+        h3{
+            font-family: v.$Texto_titulos;
+            font-size: 5.5vw !important;
+            @include m.tablet{
+                font-size: 2em !important;
+            }
+
+        }
+        
+
+    }
+}
+
+.SectionUnete{
+    .boton_unete{
+        position: relative !important;
+        .IconoWhats{
+            position: absolute;
+            width: 30%;
+            top: -5%;
+            left: -30%;
+        }
+    }
+}
