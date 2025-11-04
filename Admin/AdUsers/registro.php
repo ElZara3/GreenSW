@@ -73,16 +73,24 @@ incluirTemplate('header');
         <?php if ($exito): ?>
             <!-- CONTENIDO CUANDO EL REGISTRO ES EXITOSO -->
             <div class="registro-exitoso">
-                <div class="alerta exito">
-                    <p><?php echo s($mensaje); ?></p>
-                    <p class="contrasena-generada">La nueva contraseña es: <strong><?php echo s($contrasena); ?></strong></p>
+                <h2 class="registro-exitoso__titulo">Registro de Usuario</h2>
+
+                <div class="registro-exitoso__contenedor">
+                    <!-- Contenido central -->
+                    <div class="registro-exitoso__contenido-central">
+                        <h3 class="registro-exitoso__mensaje">¡Usuario registrado correctamente!</h3>
+
+                        <div class="registro-exitoso__recuadro-contrasena">
+                            <p>La nueva contraseña es: <strong><?php echo s($contrasena); ?></strong></p>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <div class="registro-exitoso__botones">
                     <a href="<?php echo $_SERVER['PHP_SELF']; ?>" class="boton-confirmar-registro boton-confirmar-registro-verde">
                         <i class="fa fa-user-plus"></i> Registro Nuevo
                     </a>
-                    
+
                     <a href="/Admin/index.php" class="boton-confirmar-registro boton-confirmar-registro-azul">
                         <i class="fa fa-arrow-left"></i> Volver a Centros de Acopio
                     </a>

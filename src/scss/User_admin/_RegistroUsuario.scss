@@ -1,0 +1,506 @@
+@use 'Base/Variables' as v;
+@use 'Base/mixins' as m;
+
+// Estilos para la sección de registro
+.contenedor-seccion {
+    text-align: center;
+    margin: 3rem;
+    border-radius: 2rem;
+    box-shadow: none !important;
+    background-color: transparent !important;
+
+    @include m.tablet {
+        margin: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        margin: 1.5rem;
+    }
+
+    .registro-admin {
+
+        &__titulo {
+            color: v.$VerdeUb;
+            margin: 2rem;
+            font-size: 4.5rem;
+            font-weight: bold;
+
+            @include m.tablet {
+                font-size: 4.5rem;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 3rem;
+                margin: 1rem;
+            }
+        }
+
+        &__navegacion {
+            margin: 2rem;
+
+            @media (max-width: 768px) {
+                margin: 1rem;
+            }
+
+            .boton-volver {
+                letter-spacing: 0.5px;
+                background-color: v.$amarillo;
+                color: v.$Cafe;
+                padding: 1rem 1.5rem;
+                border-radius: 1rem;
+                text-decoration: none;
+                font-weight: bold;
+                display: inline-flex;
+                align-items: center;
+                transition: background-color 0.3s;
+                font-family: v.$Texto_letra;
+
+                @media (max-width: 768px) {
+                    padding: 0.8rem 1.2rem;
+                    font-size: 1.4rem;
+                }
+
+                i {
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+
+        &__contenedor {
+            padding: 2rem;
+
+            @media (max-width: 768px) {
+                padding: 1rem;
+            }
+        }
+
+        // Estructura de grid para las dos columnas
+        &__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+
+            @include m.tablet {
+                grid-template-columns: 3fr 2fr;
+            }
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        // Columna del formulario
+        &__columna-formulario {
+            background-color: v.$ColorFondo;
+            padding: 1rem;
+            border-radius: 1rem;
+
+            @media (max-width: 768px) {
+                padding: 0.8rem;
+            }
+        }
+
+        // Columna de la imagen y botones
+        &__columna-imagen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            background-color: v.$ColorFondo;
+            padding: 1rem;
+            border-radius: 1rem;
+            min-height: 450px;
+
+            @media (max-width: 768px) {
+                min-height: auto;
+                padding: 0.8rem;
+            }
+        }
+
+        // Contenedor de la imagen
+        &__imagen-contenedor {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            flex-grow: 1;
+
+            @media (max-width: 768px) {
+                padding: 0.5rem;
+            }
+        }
+
+        // Imagen
+        &__imagen {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 1rem;
+
+            @media (max-width: 768px) {
+                max-height: 200px;
+            }
+        }
+
+        // Contenedor de botones
+        &__botones {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 1.5rem;
+            margin-top: 2rem;
+
+            @media (max-width: 768px) {
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+// Estilos para las alertas
+.alerta {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 2rem;
+    font-weight: bold;
+
+    @media (max-width: 768px) {
+        margin: 1rem;
+        padding: 0.8rem;
+    }
+
+    p {
+        margin: 0.5rem 0;
+
+        @media (max-width: 768px) {
+            font-size: 1.4rem;
+        }
+    }
+
+    &.error {
+        background-color: #e74c3c;
+    }
+
+    &.exito {
+        color: v.$Cafe;
+        background-color: v.$VerdeUb;
+    }
+}
+
+// Estilos para el formulario
+.formulario-registro {
+    text-align: left;
+
+    fieldset {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.5rem;
+        background-color: white;
+
+        @media (max-width: 768px) {
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 1rem;
+            color: v.$VerdeUb;
+            background-color: white;
+        }
+    }
+
+    &__campo {
+        margin-bottom: 1.5rem;
+
+        @media (max-width: 768px) {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: v.$Cafe;
+
+            @media (max-width: 768px) {
+                font-size: 1.4rem;
+            }
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 1.5rem;
+
+            @media (max-width: 768px) {
+                padding: 0.6rem;
+                font-size: 1.4rem;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: v.$VerdeUb;
+                box-shadow: 0 0 0 2px rgba(v.$VerdeUb, 0.2);
+            }
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1em;
+        }
+    }
+}
+
+// Estilos para los botones
+.boton-confirmar-registro {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1rem;
+
+    @include m.tablet {
+        width: 50%;
+        font-size: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        font-size: 1.6rem;
+        padding: 0.8rem;
+    }
+
+    &-verde {
+        background-color: v.$amarillo;
+        color: v.$Cafe;
+        letter-spacing: 0.5px;
+
+        &:hover {
+            background-color: v.$verdeOscuroUnete;
+            transform: translateY(-2px);
+        }
+    }
+
+    &-rojo {
+        font-family: v.$Texto_letra;
+        background-color: #e74c3c;
+        color: white;
+        letter-spacing: 1px;
+
+        &:hover {
+            background-color: v.$Verde;
+        }
+    }
+}
+
+.boton-confirmar-registro-azul {
+    letter-spacing: .5px;
+    background-color: #fbdf0f;
+    padding: 1rem 10px;
+    max-width: 100%;
+    text-align: center;
+    width: 100%;
+    margin-top: 0rem !important;
+    box-sizing: border-box !important;
+
+    @media (max-width: 768px) {
+        font-size: 1.6rem;
+        padding: 0.8rem;
+    }
+}
+
+// Estilos para el registro exitoso con responsive mejorado
+.registro-exitoso {
+    min-width: 80%;
+    width: auto;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-image: url("/vectores/Admin/registro/USUARIO\ REGISTRADO\ CORRECTAMENTE.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    @include m.tablet {
+        min-width: 80%;
+        background-size: auto;
+    }
+
+    @media (max-width: 768px) {
+        min-width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+        background-size: cover;
+    }
+}
+
+.registro-exitoso__titulo {
+    text-align: center;
+    color: v.$VerdeUb;
+    font-size: 5rem;
+    font-family: v.$Texto_titulos;
+    margin-bottom: 2rem;
+    font-weight: normal;
+
+    @include m.tablet {
+        font-size: 5rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.registro-exitoso__contenedor {
+    max-height: 5rem;
+    align-items: center;
+    background: transparent;
+    border-radius: 20px;
+    padding: 0;
+    position: relative;
+    min-height: 180px;
+    max-width: 100%;
+    min-width: 60%;
+
+    @include m.tablet {
+        min-height: 180px;
+        min-width: 60%;
+    }
+
+    @media (max-width: 768px) {
+        min-height: auto;
+        min-width: 100%;
+        max-height: none;
+        padding: 0;
+    }
+}
+
+.registro-exitoso__contenido-central {
+    text-align: center;
+    padding: 1rem 0;
+
+    @media (max-width: 768px) {
+        padding: 0.5rem 0;
+    }
+}
+
+.registro-exitoso__mensaje {
+    color: v.$ColorFondo;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-weight: normal;
+    font-family: v.$Texto_titulos;
+    text-shadow: none;
+    margin-top: 4.5rem;
+
+    @include m.tablet {
+        font-size: 2.5rem;
+        margin-top: 4.5rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+.registro-exitoso__recuadro-contrasena {
+    background-color: v.$ColorFondo;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    width: calc(100% - 3.5rem);
+    display: block;
+    margin-top: 1.5rem;
+    height: 5rem;
+
+    @include m.tablet {
+        width: calc(100% - 3.5rem);
+        height: 5rem;
+        padding: 1.2rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+        width: calc(100% - 1rem);
+        height: auto;
+        min-height: 4rem;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+.registro-exitoso__recuadro-contrasena p {
+    margin: 0;
+    font-size: 2rem;
+    color: v.$Cafe;
+    font-family: v.$CafeTextoUneteBoton;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include m.tablet {
+        font-size: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.6rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.registro-exitoso__recuadro-contrasena strong {
+    color: v.$Cafe;
+    font-family: v.$CafeTextoUneteBoton;
+    font-size: 2rem;
+
+    @include m.tablet {
+        font-size: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+    }
+}
+
+.registro-exitoso__botones {
+    display: flex;
+    justify-content: center;
+    gap: 1.7rem;
+    margin-top: 3rem;
+
+    @include m.tablet {
+        flex-direction: row;
+        gap: 1.7rem;
+        margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+}
