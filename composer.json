@@ -1,0 +1,18 @@
+{
+    "name": "alexa/proto-v_conpoo",
+    "description": "Proyecto para ViveComposta",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Team Green-Sw"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProtoClase\\" : "./classes"
+        }
+    }
+}

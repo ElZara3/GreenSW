@@ -1,0 +1,32 @@
+@use 'Base/mixins' as m;
+@use 'Base/variables' as v;
+
+.perfil .dato .etiqueta{
+    font-size: 5.5vw !important;
+    @include m.tablet{
+        font-size: 2.5vw !important;
+    }
+    @include m.desktop{
+        font-size: 1.6vw !important;
+    }
+}
+
+.perfil .dato{
+    font-size: 6vw !important;
+    @include m.tablet{
+        font-size: 3vw !important;
+    }
+    @include m.desktop{
+        font-size: 1.7vw !important;
+    }
+}
+
+.perfil .nombre{
+    font-size: 6vw !important;
+    @include m.tablet{
+        font-size: 4vw !important;
+    }
+    @include m.desktop{
+        font-size: 2vw !important;
+    }
+}

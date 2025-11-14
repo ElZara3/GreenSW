@@ -1,0 +1,17 @@
+@use 'Base/Variables' as v;
+@use 'Base/mixins' as m;
+
+.seccion-progresion .titulo-progresion {
+    font-size: 2em !important;
+    @include m.tablet{
+        font-size: 4em !important;
+    }
+}
+
+.insignias-especiales-titulo {
+    font-size: 2em !important;
+    @include m.tablet{
+        font-size: 3em !important;
+    }
+
+}

@@ -1,0 +1,74 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
+.FondoCamionesNosotros {
+    gap: 3em !important;
+    justify-content: space-evenly !important;
+    @include m.tablet{
+        padding: 7% 0 !important;
+        align-items: baseline !important;
+    }
+
+    @include m.desktop{
+        height: 20vw !important;
+        flex-wrap: wrap !important;
+    }
+    .Cif .especial{
+        margin-top: 24rem !important;
+        @include m.tablet{
+            margin-top: 15em !important;
+        }
+        @include m.desktop{
+            margin-top: 14% !important;
+        }
+    }
+    article {
+        @include m.desktop{
+            margin-top: -3% !important;
+        }
+        p.TexCif{
+            width: 90% !important;
+            @include m.tablet{
+                width: 45% !important;
+            }
+            color: v.$blanco !important;
+            @include m.desktop{
+                width: 22% !important;
+                font-size: 1.2vw;
+            }
+        }
+        p.ValorCif{
+            margin-top: 4rem !important;
+            color: v.$blanco !important;
+            @include m.tablet{
+                margin-top: 5rem !important;
+            }
+        }
+        &:nth-child(1) {
+            margin-top: 1em;
+            @include m.tablet{
+                margin-top: 0;
+            }
+
+        }
+        &:nth-child(4) {
+            margin-bottom: 3em;
+            @include m.tablet{
+                margin-bottom: 0;
+            }
+            p.TexCif {
+                width: 30rem !important;
+                @include m.tablet{
+                    width: 30% !important;
+                }
+                @include m.desktop{
+                    width: 18vw !important;
+                }
+            }
+        }
+    }
+}
+
+.FondoCamionesNosotros .escpecialCrifras{
+    margin-bottom: -3em !important;
+}

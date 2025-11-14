@@ -1,0 +1,858 @@
+@use 'Base/Variables' as v;
+@use 'Base/mixins' as m;
+
+// Contenedor principal con todos los estilos encapsulados
+.estadisticas-contenedor {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 4%;
+    border-radius: 1.5rem;
+
+    //Boton de regresar
+    .BtnRegresarEstadisticas{
+        font-family: v.$Texto_letra !important;
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        background:none;
+        padding: 1%;
+        margin-top: 2%;
+        a{
+            font-family: v.$Texto_letra;
+            padding: 1% 5%;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: 600;
+            background-color: v.$amarillo !important;
+            @include m.tablet{
+                font-size: 2.5rem;
+            }
+            @include m.desktop{
+                padding: .5% 2%;
+                font-size: 3rem;
+                transition: color .2s;
+                &:hover{
+                    color: v.$VerdeUb;
+                }
+            }
+        }
+        @include m.desktop{
+            margin-top: 1%;
+        }
+    }
+    .imagen-estadisticas{
+        size: 3rem !important;
+    }
+    // Título específico para estadísticas
+    .estadisticas-titulo {
+        color: v.$CafeClaroTexto !important;
+        font-family: v.$Texto_titulos !important;
+        text-align: center;
+        margin: 3rem 0;
+        padding-bottom: 1.5rem;
+        font-size: 4rem !important;
+        font-weight:normal !important;
+        position: relative;
+        letter-spacing: 0 !important;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12rem;
+            height: 0.6rem;
+            background: transparent !important;
+            border-radius: 2rem;
+            box-shadow:none !important;
+        }
+    }
+
+    .titulo-con-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem !important;
+    margin: 0rem 0;
+    padding-bottom: 1rem;
+    
+    .logo-estadisticas {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+        
+        @include m.tablet {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        @include m.desktop {
+            width: 4.5rem;
+            height: 4.5rem;
+        }
+    }
+    
+    .estadisticas-titulo {
+        margin: 0 !important;
+        padding-bottom: 0 !important;
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+    // Panel de Estadísticas Globales mejorado
+    .panel-estadisticas-globales {
+        margin-bottom: 4rem;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        background: v.$amarilloEstadisticas !important;
+        .estadisticas-seccion-titulo {
+            color: v.$ColorLetraEstadisticas !important;
+            font-family: v.$Texto_letra;
+            margin-bottom: 0rem !important;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600 !important;
+            position: relative;
+            padding-bottom: 1rem;
+            align-items: center;
+            
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12rem;
+        height: 0.6rem;
+        background: transparent !important;
+        border-radius: 2rem;
+        box-shadow:none !important;
+    }
+        }
+
+        .tarjetas-estadisticas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2.5rem;
+            
+            .tarjeta-estadistica {
+                flex: 1;
+                min-width: 22rem;
+                display: flex;
+                align-items: center;
+                padding: 2.5rem;
+                border-radius: 1.2rem;
+                background: v.$ColorFondoEstadisticas !important;
+                border: none;
+                box-shadow: 0px 0px 2px v.$amarillo !important;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                
+                &:hover {
+                    transform: translateY(-0.8rem);
+                    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1), 
+                                inset 0 0.5rem 0.5rem rgba(255, 255, 255, 0.8);
+                }
+                
+                .icono {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 7rem;
+                    height: 7rem;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, rgba(v.$Verde, 0.1), rgba(v.$VerdeUb, 0.3));
+                    margin-right: 2.5rem;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1),
+                                inset 0 0.5rem 1rem rgba(255, 255, 255, 0.5);
+                    
+                    i {
+                        font-size: 2.8rem;
+                        color: v.$VerdeUb;
+                        text-shadow: 0 0.2rem 0.2rem rgba(255, 255, 255, 0.5);
+                    }
+                }
+                
+                .detalles {
+                    .estadistica-subtitulo {
+                        color: v.$negro !important;
+                        font-size: 1.6rem;
+                        font-family: v.$Texto_titulos !important; 
+                        margin-bottom: 0.8rem;
+                        font-weight: 500;
+                        letter-spacing: 0.05em;
+                    }
+                    
+                    .numero {
+                        font-size: 3.5rem;
+                        font-weight: 700;
+                        color: v.$Cafe !important;
+                        font-family: v.$Texto_letra !important;
+                        line-height: 1.2;
+                        letter-spacing: 0.02em;
+                        text-align: center !important;
+                        align-items: center !important;
+                        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+                    }
+                }
+                
+                // Estilos específicos para diferenciar tarjetas
+                &:nth-child(1) {
+                    .icono {
+                        background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.3));
+                        i { color: #4CAF50; }
+                    }
+                    .numero { color: #4CAF50; }
+                }
+                
+                &:nth-child(2) {
+                    .icono {
+                        background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.3));
+                        i { color: #2196F3; }
+                    }
+                    .numero { color: #2196F3; }
+                }
+                
+                &:nth-child(3) {
+                    .icono {
+                        background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(156, 39, 176, 0.3));
+                        i { color: #9C27B0; }
+                    }
+                    .numero { color: #9C27B0; }
+                }
+                
+                &:nth-child(4) {
+                    .icono {
+                        background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.3));
+                        i { color: #FF9800; }
+                    }
+                    .numero { color: #FF9800; }
+                }
+            }
+        }
+    }
+
+    // Panel de Filtros mejorado
+    .panel-filtros {
+        margin-bottom: 4rem;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        background: v.$VerdeEstadisticas !important;
+        box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.05);
+        
+        .estadisticas-seccion-titulo {
+            color: v.$ColorLetraEstadisticas !important;
+            font-family: v.$Texto_letra;
+            margin-bottom: 0rem !important;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600 !important;
+            position: relative;
+            padding-bottom: 1rem;
+            align-items: center;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 8rem;
+                height: 0.3rem;
+                background: transparent !important;
+                border-radius: 1rem;
+            }
+        }
+        
+        .form-filtros {
+            background: v.$ColorFondoEstadisticas !important;
+            padding: 2.5rem;
+            border-radius: 1.2rem;
+            border: none;
+            box-shadow: 0px 0px 2px v.$verdelogin;            
+            .filtros-fila {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2.5rem;
+                margin-bottom: 2.5rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                .campo-filtro {
+                    flex: 1;
+                    min-width: 15rem;
+                    
+                    label {
+                        display: block;
+                        color: v.$ColorLetraEstadisticas !important;
+                        margin-bottom: 1rem;
+                        font-size: 2rem !important;
+                        font-weight: 500;
+                        letter-spacing: 0.05em;
+                    }
+                    
+                    input, select {
+                        width: 100%;
+                        padding: 1.2rem 1.5rem;
+                        border: 1px solid rgba(v.$Verde, 0.2);
+                        border-radius: 0.8rem;
+                        background: rgba(255, 255, 255, 0.8);
+                        transition: all 0.3s ease;
+                        box-shadow: inset 0 0.2rem 0.5rem rgba(0, 0, 0, 0.03);
+                        font-size: 1.4rem;
+                        color: #333;
+                        
+                        &:focus {
+                            outline: none;
+                            border-color: v.$Verde;
+                            box-shadow: 0 0 0 0.3rem rgba(v.$Verde, 0.1), 
+                                        inset 0 0.2rem 0.5rem rgba(0, 0, 0, 0.03);
+                        }
+                    }
+                    
+                    &.campo-boton {
+                        display: flex;
+                        align-items: flex-end;
+                    }
+                }
+            }
+            
+            .btn-aplicar-filtros {
+                background: v.$VerdeUb !important;
+                color: white;
+                border: none;
+                padding: 1.2rem 2.5rem;
+                border-radius: 0.8rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                letter-spacing: 0.05em;
+                
+                i {
+                    margin-right: 1rem;
+                    font-size: 1.8rem;
+                }
+                
+                &:hover {
+                    background: linear-gradient(145deg, v.$VerdeUb, v.$Verde);
+                    transform: translateY(-0.5rem);
+                    box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.2);
+                }
+                
+                &:active {
+                    transform: translateY(0.2rem);
+                    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.15);
+                }
+            }
+        }
+    }
+
+    // Panel de Resultados mejorado
+    .panel-resultados {
+        padding: 2rem;
+        border-radius: 0rem !important;
+        background: linear-gradient(145deg, rgba(255,255,255,0.7), rgba(255,255,255,0.9));
+        box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.05);
+        margin-bottom: 4rem;
+        
+        .tabs-container {
+            .tabs {
+                display: flex;
+                margin-bottom: 3rem;
+                border-bottom: 1px solid rgba(v.$Verde, 0.2);
+                padding: 0 1rem;
+                
+                .tab-btn {
+                    padding: 1.5rem 3rem;
+                    background: transparent;
+                    border: none;
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                    color: rgba(v.$VerdeUb, 0.6);
+                    cursor: pointer;
+                    position: relative;
+                    transition: all 0.3s ease;
+                    letter-spacing: 0.05em;
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -1px;
+                        left: 0;
+                        width: 100%;
+                        height: 0.3rem;
+                        background: transparent !important;
+                        transition: all 0.3s ease;
+                        border-radius: 0.3rem 0.3rem 0 0;
+                    }
+                    
+                    &:hover {
+                        color: v.$VerdeUb;
+                    }
+                    
+                    &.active {
+                        color: v.$VerdeUb;
+                        font-weight: 600;
+                        
+                        &::after {
+                            background:transparent !important;
+                            height: 0.4rem;
+                        }
+                    }
+                }
+            }
+            
+            .tab-content {
+                .tab-pane {
+                    display: none;
+                    
+                    &.active {
+                        display: block;
+                        animation: estadisticas-fadeIn 0.5s ease;
+                    }
+                }
+            }
+        }
+    }
+
+    // Paneles de gráficas mejorados
+    .paneles-graficas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+        
+        .panel-grafica {
+            flex: 1;
+            min-width: 30rem;
+            padding: 2.5rem;
+            border-radius: 1.2rem;
+            background: white;
+            border: none;        
+            box-shadow: 0px 0px 2px v.$verdelogin;    
+            .grafica-titulo {
+                color: v.$ColorLetraEstadisticas !important;
+                font-family: v.$Texto_letra !important;
+                text-align: center;
+                margin-bottom: 2.5rem;
+                font-size: 1.9rem;
+                font-weight: 600;
+                position: relative;
+                padding-bottom: 1rem;
+                
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 6rem;
+                    height: 0.3rem;
+                    background: v.$Verde;
+                    border-radius: 1rem;
+                }
+            }
+            
+            .contenedor-grafica {
+                position: relative;
+                height: 35rem;
+                width: 100%;
+                border-radius: 0.8rem;
+            }
+        }
+    }
+
+    // Tablas mejoradas
+    .tabla-container {
+        margin-bottom: 3.5rem;
+        border-radius: 0 !important;
+        
+        .tabla-titulo {
+            color: v.$ColorLetraEstadisticas !important;
+            font-family: v.$Texto_letra_Estadisticas !important;
+
+            margin-bottom: 2rem;
+            font-size: 2.5rem !important;
+            font-weight: 0 !important;
+            position: relative;
+            padding-bottom: 1rem;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 6rem;
+                height: 0.3rem;
+                background: transparent !important;
+                border-radius: 1rem;
+            }
+        }
+        
+        .tabla-datos {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 0rem !important;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.07);
+            
+            th, td {
+                padding: 1.5rem;
+                text-align: left;
+            }
+            
+            th {
+                border-radius: 0rem !important;
+                text-align: center !important;
+                font-family: v.$Texto_letra !important;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 1.5rem !important;
+                letter-spacing: 0.08em;
+                border-bottom: 1px solid rgba(v.$Verde, 0.2);
+                
+                // Color alternado para cada th
+                &:nth-child(odd) {
+                    background: v.$VerdeUb !important;
+                    color: v.$ColorFondoEstadisticas !important;
+                }
+                
+                &:nth-child(even) {
+                    background: v.$VerdeEstadisticas !important;
+                    color: v.$ColorLetraEstadisticas !important;
+                }
+            }
+            
+            tr {
+                transition: all 0.3s ease;
+                
+                // Alterna colores entre filas
+                &:nth-child(odd) td {
+                    background-color: v.$ColorFondoTablaOscuro !important;
+                }
+                
+                &:nth-child(even) td {
+                    background-color: v.$ColorFondoEstadisticas !important;
+                }
+                
+                &:hover td {
+                    background: rgba(v.$Verde, 0.05);
+                }
+                
+                &:last-child td {
+                    border-bottom: none;
+                }
+            }
+
+            td {
+                border-bottom: 1px solid rgba(v.$Verde, 0.1);
+                padding: 1rem !important;
+                font-size: 1.4rem !important;
+                text-align: center !important;
+                font-family: v.$Texto_letra !important;
+                color: v.$ColorLetraEstadisticas !important;
+                &:last-child {
+                    font-weight: 600;
+                    color: v.$verdeOscuroUnete !important;
+                }
+            }
+        }
+        
+        .no-datos {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(v.$VerdeUb, 0.6);
+            font-style: italic;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.07);
+            font-size: 1.5rem;
+        }
+    }
+
+    // Animaciones específicas para estadísticas
+    @keyframes estadisticas-fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(2rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes estadisticas-pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .estadisticas-pulse {
+        animation: estadisticas-pulse 2s infinite ease-in-out;
+    }
+
+    // Responsive - ajustado para mantener distribución en pantallas pequeñas
+    @media (max-width: 1024px) {
+        padding: 0 3%;
+        
+        .estadisticas-titulo {
+            font-size: 2.8rem;
+        }
+        
+        .panel-estadisticas-globales {
+            .estadisticas-seccion-titulo {
+                font-size: 2.2rem;
+            }
+            
+            .tarjetas-estadisticas {
+                .tarjeta-estadistica {
+                    min-width: calc(50% - 2rem);
+                    
+                    .icono {
+                        width: 6rem;
+                        height: 6rem;
+                        
+                        i {
+                            font-size: 2.2rem;
+                        }
+                    }
+                    
+                    .detalles {
+                        .numero {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .panel-grafica {
+            min-width: calc(50% - 2rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .estadisticas-titulo {
+            font-size: 2.4rem;
+        }
+        
+        .panel-estadisticas-globales {
+            padding: 1.5rem;
+            
+            .estadisticas-seccion-titulo {
+                font-size: 2rem;
+            }
+            
+            .tarjetas-estadisticas {
+                .tarjeta-estadistica {
+                    min-width: 100%;
+                    padding: 2rem;
+                    
+                    .icono {
+                        width: 5.5rem;
+                        height: 5.5rem;
+                    }
+                }
+            }
+        }
+        
+        .panel-filtros {
+            padding: 1.5rem;
+            
+            .form-filtros {
+                padding: 2rem;
+                
+                .filtros-fila {
+                    flex-direction: column;
+                    gap: 2rem;
+                    
+                    .campo-filtro {
+                        width: 100%;
+                    }
+                }
+                
+                .btn-aplicar-filtros {
+                    width: 100%;
+                }
+            }
+        }
+        
+        .panel-resultados {
+            padding: 1.5rem;
+        }
+        
+        .panel-grafica {
+            min-width: 100%;
+            padding: 2rem;
+        }
+        
+        .tabs {
+            .tab-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1.5rem;
+            }
+        }
+        
+        .tabla-container {
+            .tabla-datos {
+                th, td {
+                    padding: 1.2rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .estadisticas-titulo {
+            font-size: 2rem;
+            
+            &::after {
+                width: 8rem;
+            }
+        }
+        
+        .panel-estadisticas-globales {
+            .estadisticas-seccion-titulo {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .panel-filtros .estadisticas-seccion-titulo,
+        .panel-grafica .grafica-titulo,
+        .tabla-container .tabla-titulo {
+            font-size: 1.7rem;
+        }
+        
+        .tabla-container {
+            overflow-x: auto;
+            
+            .tabla-datos {
+                min-width: 45rem;
+            }
+        }
+    }
+}
+
+// Contenedor especial para tabla con imagen - CORREGIDO
+.tabla-con-imagen {
+    margin-bottom: 3.5rem;
+    
+    .contenedor-tabla-imagen {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+        
+        .imagen-tabla {
+            flex: 0 0 33.333%; // 1/3 del ancho
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: v.$ColorFondoEstadisticas;
+            border-radius: 1.2rem;
+            box-shadow: transparent;
+            
+            @media (max-width: 768px) {
+                flex: 1 1 100%;
+                width: 100%;
+            }
+            
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                max-height: 40rem;
+            }
+        }
+        
+        .tabla-wrapper {
+            flex: 0 0 calc(66.666% - 2rem); // 2/3 del ancho menos el gap
+            overflow-x: auto;
+            
+            @media (max-width: 768px) {
+                flex: 1 1 100%;
+                width: 100%;
+            }
+            
+            .tabla-titulo {
+                margin-bottom: 0rem;
+                margin-top: 0; // Eliminar margen superior
+                background-color: v.$NaranjaEstadisticas !important;
+                border-top-left-radius: 1rem !important;  
+                border-top-right-radius: 1rem !important; 
+                color: v.$ColorFondoEstadisticas !important;
+                padding-top: 1rem;
+                font-family: v.$Texto_letra !important;
+                      }
+        }
+    }
+}
+
+// Estilos específicos para la tabla de Top 10 Usuarios
+.tabla-container.tabla-con-imagen .tabla-wrapper .tabla-top-usuarios {
+    width: 100%;
+    
+    thead tr th {
+        // Primer encabezado - Naranja
+        &:nth-child(1) {
+            background: v.$NaranjaEstadisticasOscuro !important;
+            color: v.$ColorFondoEstadisticas !important;
+            font-family: v.$Texto_letra !important;
+        }
+        
+        // Segundo encabezado - Rojo
+        &:nth-child(2) {
+            background: v.$NaranjaEstadisticasOscuro !important;
+            color: v.$ColorFondoEstadisticas !important;
+            font-family: v.$Texto_letra !important;
+        }
+        
+        // Los demás encabezados (si hubiera más)
+        &:nth-child(n+3):nth-child(odd) {
+            background: v.$VerdeUb !important;
+            color: v.$ColorFondoEstadisticas !important;
+        }
+        
+        &:nth-child(n+3):nth-child(even) {
+            background: v.$VerdeEstadisticas !important;
+            color: v.$ColorLetraEstadisticas !important;
+        }
+    }
+    
+    tbody tr {
+        // Colores alternados para las filas del cuerpo
+        &:nth-child(odd) td {
+            background-color: v.$ColorFondoTablaOscuro !important;
+        }
+        
+        &:nth-child(even) td {
+            background-color: v.$ColorFondoEstadisticas !important;
+        }
+    }
+}

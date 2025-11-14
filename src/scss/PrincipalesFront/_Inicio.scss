@@ -1,0 +1,220 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
+.Flayer{
+    .Flayer_paraDesk video, .Flayer_paraDesk img {
+        max-height: 90vh;
+    }
+}
+
+
+.DireccionASecciones{
+    .secciones{
+        article{
+            width: 100%;
+            height: auto;
+            a{
+                border-radius: .5em;
+            }
+        }
+    }
+}
+
+//Link superpuesto para tik tok
+.RedesSocialesInicio{
+    #Rec3{
+        a{
+            width: 100%;
+            height: 82%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+    }
+}
+
+.carousel {
+    .carousel-slide p{
+        border-radius: 10px;
+    }
+}
+
+a.botonUb_mobile{
+    border-radius: 10px;
+}
+
+.divisiondeinfo{
+    a{
+        border-radius: 10px;
+    }
+}
+
+.RedesSocialesInicio #botonRedes{
+    border-radius: 10px;
+}
+
+.proceso .UnirseProc a{
+    font-family: v.$FuturaCondensedBT !important;
+    @include m.desktop{
+        font-size: 4rem !important;
+        padding: 1% 5% !important;
+    }
+}
+
+
+//Correciones de diseño desde movile:
+
+.proceso .UnirseProc h3{
+    font-size: 10vw !important;
+    @include m.desktop{
+        font-size: 4vw !important;
+        font-family: v.$FuturaCondensedBT !important;
+    }
+}
+.UbicInicio h3{
+    font-size: 8vw !important;
+    color: v.$VerdeTitUbOrig !important;
+    font-family: v.$FuturaCondensedBT !important;
+    @include m.desktop{
+        font-size: 6vw !important;
+    }
+}
+
+.proceso .UnirseProc p{
+    width: 85% !important;
+    @include m.tablet{
+        width: 60% !important;
+    }
+    @include m.desktop{
+        width: 75% !important;
+        line-height: 1.2;
+    }
+}
+.InfoComposta_inicio h2{
+    font-family: v.$FuturaCondensedBT !important;
+    @include m.tablet{
+        font-size: 3.9vw !important;
+    }   
+    @include m.desktop{
+        font-size: 3.5vw !important;
+    }
+}
+.InfoComposta_inicio a{
+    @include m.desktop{
+        bottom: 30% !important;
+    }
+}
+
+.RedesSocialesInicio h2{
+    width: 60% !important;
+    @include m.tablet{
+        width: 70% !important;
+        font-size: 7vw !important;
+    }
+    @include m.desktop{
+        font-size: 5vw !important;
+    }
+}
+
+.NavPrincipal .Logo{
+    height: auto !important;
+}
+
+.NavPrincipal .Logo svg{
+    transform: translateY(50%) !important;
+}
+
+.NavPrincipal .Logo{
+    margin-left: 38% !important;
+}
+.Redes_princ{
+    background-color: v.$ColorBarraSupAm !important;
+}
+
+.Redes_princ h1{
+    color: v.$Cafe !important;
+    font-family: v.$FuturaCondensedBT !important;
+}
+
+.Flayer .Flayer_paraDesk video, .Flayer .Flayer_paraDesk img{
+    max-height: 100vh !important;
+}
+
+h2.TextoLogrosInicio{
+    font-family: v.$FuturaCondensedBT !important;
+}
+
+.InfoComposta_inicio h2{
+    @include m.desktop{
+        width: 34% !important;
+        margin-left: 10% !important;
+    }
+}
+
+.Recuadros{
+    @include m.desktop{
+        margin: -1% !important;
+    }
+}
+
+.Recuadros #Rec1, .Recuadros #Rec2, .Recuadros #Rec3{
+    @include m.desktop{
+        transform: scale(0.9);
+    }
+}
+
+.Recuadros #Rec2{
+    @include m.desktop{
+        transform: scale(0.9) !important;
+    }
+}
+
+.RedesSocialesInicio #botonRedes{
+    @include m.desktop{
+        font-size: 1.5vw !important;
+    }
+}
+
+.RedesSocialesInicio .Red2{
+    @include m.desktop{
+        top: 12% !important;
+    }
+}
+
+.UbicInicio button{
+    @include m.tablet{
+        font-size: 1.8vw !important;
+        letter-spacing: 0px !important;
+    }
+}
+.InfoComposta_inicio a{
+    @include m.tablet{
+        width: 35% !important;
+        left: 10% !important;
+        letter-spacing: 0px !important;
+        font-family: v.$FuturaCondensedBT !important;
+    }
+    @include m.desktop{
+        left: 15% !important;
+        width: 25% !important;
+        font-size: 2.5vw !important;
+    }
+}
+
+.RedesSocialesInicio #botonRedes{
+    font-size: 4.5vw !important;
+    font-family: v.$FuturaCondensedBT !important;
+    @include m.tablet{
+        font-size: 4vw !important;
+    }
+    @include m.desktop{
+        font-size: 2vw !important;
+    }
+}
+
+.RedesSocialesInicio .FlechaRedes{
+    @include m.desktop{
+        left: 9% !important;
+    }
+}

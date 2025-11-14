@@ -1,0 +1,78 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
+.Composta_sect{
+    .ProcesoComposta{ 
+    margin-bottom: 3%;
+    p{
+        margin-bottom: -1%;
+    }
+
+    }
+}
+.ProcesoComposta p{
+    font-size: 3.8vw !important;
+    width: 90% !important;
+}
+
+.Composta_sect{
+    .FotosSectionComp{
+
+        .carousel{
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+        }
+        .Fondo{
+            position: relative !important;
+        }
+        .CarruselBootstrapComp{
+            @import 'bootstrap';
+            position: absolute;
+            top: 25%;
+            left: 28%;
+            width: 46%;
+        
+        }
+    }
+}
+
+.Composta_sect .FotosSectionComp .CarruselBootstrapComp .carousel-indicators{
+    margin-bottom: -1.5rem !important;
+}
+.Composta_sect .FotosSectionComp .CarruselBootstrapComp .carousel-indicators [data-bs-target]{
+    border: 2px solid v.$Cafe;
+        border-radius: 1em;
+}
+
+.Composta_sect .FotosSectionComp .CarruselBootstrapComp .carousel-indicators .active{
+    background-color: v.$CafeUbicaciones;
+}
+
+.Composta_sect .ProcesoComposta p{
+    @include m.tablet{
+        font-size: 2.5vw !important;
+    }
+    @include m.desktop{
+        font-size: 2.2vw !important;
+    }
+}
+.Composta_sect .ProcesoComposta p{
+    margin-bottom: 0% !important;
+}
+
+.Composta_sect{
+    .FotosSectionComp{
+        .Compostini{
+                position: absolute;
+                top: 8.5%;
+                width: 8.5%;
+                right: 15.5%;
+                height: auto;
+                @include m.desktop{
+                    top: 6.5%;
+                    width: 9%;
+                }
+        }
+    }
+}

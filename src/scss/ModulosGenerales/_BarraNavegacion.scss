@@ -1,0 +1,21 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
+.NavMobile .IconoIniciarS svg{
+    border-radius: 50%;
+    background-color: v.$NaranjaIconoSession;
+}
+
+.NavMobile .menuPrincipalMobile{
+    background-color: v.$amarillo !important;
+}
+
+.NavMobile .menuPrincipalMobile li a{
+    border-radius: 1rem !important;
+    box-shadow: none !important;
+    background-color: v.$ColorFondo;
+}
+
+.NavMobile svg{
+    margin-right: 4% !important;
+}

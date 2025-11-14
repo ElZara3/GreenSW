@@ -1,0 +1,60 @@
+@use 'Base/Mixins' as m;
+@use 'Base/Variables' as v;
+
+.Contacto p{
+    line-height: 1.2;
+}
+.NumeroTextoYrecuadroContacto .Numero{
+    margin: 6% 28% 10% 0 !important;
+    @include m.tablet{
+        margin: 6% 29% 15% 0 !important;
+    }
+    @include m.desktop{
+        margin: 3% 0 6% 20% !important;
+    }
+}
+.NumeroTextoYrecuadroContacto .recuadro p{
+    margin-left: 8% !important;
+    font-size: 2.5vw !important;
+}
+
+.FigurasDeRedes{
+    @include m.desktop{
+        margin-top: -3.5% !important;
+    }
+}
+.NumeroTextoYrecuadroContacto .manoConPhone{
+    @include m.desktop{
+        bottom: 5% !important;
+        right: 0% !important;
+    }
+}
+.NumeroTextoYrecuadroContacto .manoConPhone{
+    @include m.desktop{
+        width: 30% !important;
+    }
+}
+
+.BotonContactanosContacato{
+    text-decoration: none;
+    display: block;
+    width: fit-content;
+    padding: 0.4% 4%;
+    font-size: 2.7vw;
+    margin-left: 19%;
+    border-radius: 0.5em;
+    margin-top: 1%;
+    margin-bottom: 8%;
+    font-family: v.$FuturaCondensedBT;
+    background-color: v.$amarilloTit;
+    transition: transform 0.2s, box-shadow 0.4s;
+    @include m.tablet{
+        margin-left: 22%;
+    }
+    @include m.desktop{
+        &:hover{
+            transform: scale(1.02);
+            box-shadow: 0px 0px 3px 1px v.$Cafe;
+        }
+    }
+}

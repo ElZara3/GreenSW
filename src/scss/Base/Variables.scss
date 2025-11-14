@@ -1,0 +1,81 @@
+// Variables de fuentes
+$Texto_titulos: "Futura_Hv";
+$Texto_titulos_italica: "Futura_Hv_Italic";
+$Texto_letra: "Futura_Bk";
+$Texto_letra_italica: "Futura_Bk_Italic";
+$FuturaCondensedBT: "Futura_Condensed_BT";
+
+$ColorFondo: rgb(248, 244, 229);
+$blanco: white;
+$negro: black;
+$amarillo: #ffdf00;
+$Cafe: rgb(81, 43, 28);
+$Verde: rgb(133,188,75);
+$amarilloTit: rgb(255,218,2);
+$amarilloLugares: rgb(223,177,73);
+$CafeUbicaciones: rgb(104,33,10);
+$azul: rgb(113, 113, 255);
+$VerdeExito: rgb(35, 241, 35);
+$Rojo: rgb(255, 0, 0);
+$ColorParaFondoErrores: #ccc;
+$amarillo_sombra: rgba(255, 217, 2, 0.5);
+$VerdeTitUb: rgb(43, 160, 59);
+$VerdeUb: rgb(35,131,76);
+$verdelogin: rgb(58,160,84);
+$CafeClaro: rgb(218, 205, 131);
+$verdeUnete: rgb(15, 158, 77);
+$verdeOscuroUnete:#155c46;
+$CafeClaroTexto:#87371f;
+$CafeTextoUneteBoton: #731b00;
+$gris_sombra: rgba(0, 0, 0, 0.1);
+$NaranjaIconoSession: #ef8b34;
+$ColorBarraSupAm: #f8de4b;
+$VerdeTitUbOrig: #3AA054;
+
+//variables extra
+$amarilloEstadisticas:rgb(251 216 73);
+$VerdeEstadisticas:rgb(182 215 79);
+$ColorFondoEstadisticas:rgb(253 253 251);
+$ColorLetraEstadisticas:rgb(53 53 51);
+$Texto_letra_Estadisticas: "Futura Md BT Medium";
+$ColorFondoTablaOscuro: rgb(255 242 207);
+$NaranjaEstadisticas:rgb(255 169 0);
+$NaranjaEstadisticasOscuro:rgb(255 102 0);
+$Texto_Letra_Insignias:"Futura Bold Condensed BT";
+;
+
+// Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1200px;
+$desktopXL: 1400px;
+
+
+// Cargar fuentes
+@font-face {
+    font-family: $Texto_titulos;
+    src: url("./../../Fuentes/Futura_Hv/FutuHv.ttf") format("truetype");
+    font-display: swap;
+}
+//Impementar otra
+
+@font-face {
+    font-family: $Texto_titulos_italica;
+    src: url("./../../Fuentes/Futura_Hv/FutuHvIt.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra;
+    src: url("./../../Fuentes/Futura_BK/FutuBk.ttf") format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: $Texto_letra_italica;
+    src: url("./../../Fuentes/Futura_BK/FutuBkIt.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $FuturaCondensedBT;
+    src: url("./../../Fuentes/FutCond/Futura_condensed.otf") format("truetype");
+}

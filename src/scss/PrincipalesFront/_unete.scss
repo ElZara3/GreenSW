@@ -1,0 +1,50 @@
+@use 'Base/Mixins' as m;
+@use 'Base/Variables' as v;
+
+.ProcesoFlayer{
+    .Flayerunete{
+        h3{
+            font-family: v.$Texto_titulos;
+            font-size: 6.2vw !important;
+            @include m.tablet{
+                font-size: 4.5vw !important;
+            }
+            @include m.desktop{
+                bottom: 0 !important;
+                top: 52% !important;
+                font-size: 3.2vw !important;
+            }
+        }
+        
+
+    }
+}
+
+.SectionUnete{
+    .boton_unete{
+        position: relative !important;
+        .IconoWhats{
+            pointer-events: none;
+            position: absolute;
+            width: 30%;
+            top: -5%;
+            left: -30%;
+        }
+    }
+}
+
+.UnetePasos h3{
+    @include m.tablet{
+        font-family: v.$FuturaCondensedBT !important;
+    }
+}
+.SeParteYFamilias h2{
+    font-family: v.$FuturaCondensedBT !important;
+}
+
+.Preguntas .Preg1 .TextoNoesbasura{
+    top: 43% !important;
+    font-family: v.$Texto_titulos !important;
+    width: 22% !important;
+    font-size: 4vw !important;
+}

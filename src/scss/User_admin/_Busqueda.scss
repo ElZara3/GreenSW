@@ -1,0 +1,30 @@
+@use 'Base/Variables' as v;
+@use 'Base/Mixins' as m;
+
+
+.busqueda-usuarios{
+    background-image: url('/vectores/Admin/Busqueda/BLOQUE\ NARANJA.svg') !important;
+}
+.busqueda-usuarios .encabezado-busqueda h1{
+    color: v.$blanco !important;
+    font-size: 2em !important;
+    @include m.tablet{
+        font-size: 3em !important;
+    }
+}
+
+.busqueda-usuarios .buscador-global .opciones-busqueda .link-opcion{
+
+    background-color: v.$amarilloTit !important;
+}
+
+.TextobusqConLupa{
+    position: relative;
+    &::before{
+        content: url('/vectores/Admin/Busqueda/ICONO BUSCADOR.svg');
+        display: inline-block;
+        vertical-align: baseline;
+        margin-right: .25em;
+        width: .85em;
+    }
+}

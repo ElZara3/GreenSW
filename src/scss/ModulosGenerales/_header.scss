@@ -1,0 +1,26 @@
+@use 'Base/mixins' as m;
+@use 'Base/variables' as v;
+
+img.IconoInicioNaranja{
+    position: absolute !important;
+    width: 13% !important;
+    height: auto;
+    @include m.tablet{
+        width: 10% !important;
+    }
+
+}
+.InicioS{
+    a{
+        position: relative !important;
+    }
+}
+
+.IconoInicioCafe{
+    margin-left: -67%;
+    position: absolute;
+}
+
+.Redes a img{
+    padding: 15% !important;
+}

@@ -1,0 +1,36 @@
+@use 'Base/Mixins' as m;
+@use 'Base/Variables' as v;
+
+
+.CarruselParaUbicacionesBootstrap{
+    @import 'bootstrap';
+
+    .carousel-inner{
+        width: 80%;
+        margin: 2% auto;
+    }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon{
+        width: 8vw;
+        height: 8vw;
+        margin-top: 5rem;
+        filter: invert(52%) sepia(25%) saturate(590%) hue-rotate(343deg) brightness(95%) contrast(85%);
+    }
+}
+
+.Ubicaciones p{
+    font-size: 4vw !important;
+    width: 90% !important;
+    @include m.tablet{
+        width: 65% !important;
+        font-size: 2.5vw !important;
+    }
+    @include m.desktop{
+        width: 60% !important;
+        font-size: 2.2vw !important;
+    }
+}
+.Ubicaciones p{
+    line-height: 1.2;
+}

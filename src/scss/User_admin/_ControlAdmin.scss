@@ -1,0 +1,92 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.RecuadroInfo {    
+    textarea {
+        display: block; 
+        width: 100%;
+        margin: 0 auto;
+        height: 8em;
+        margin-bottom: 2%;
+        padding: .5em;
+        border: 2px solid v.$gris_sombra;
+        @include m.tablet{
+            width: 42vw;
+        }
+    }
+    
+    .BtnGuardarInfo {
+        display: block; 
+        color: v.$blanco;
+        background-color: v.$verdeUnete;
+        font-family: v.$FuturaCondensedBT;
+        padding: 1% 2%;
+        border-radius: 10px;
+        margin-right: 5%; 
+        margin-left: auto;
+        border: none; 
+        cursor: pointer; 
+        font-weight: 800;
+        transition: box-shadow 0.3s ease;
+        font-size: 1.2em;
+        &:hover {
+            box-shadow: 0px 0px 8px 2px v.$verdelogin;
+        }
+    }
+}
+    
+
+.detalle-usuario__imagen-contenedor{
+    margin-bottom: 12% !important;
+}
+
+.editar_cubetas_totales{
+    margin-top: 5% !important;
+}
+
+.mensajeInfoUsuarioActualizado{
+    text-align: center;
+    color: v.$verdeUnete;
+    font-size: 2em;
+    margin: 2%;
+}
+
+h4.detalle-usuario__subtitulo{
+    font-size: 1.2em !important;
+    @include m.tablet{
+        font-size: 1.5em !important;
+    }
+    @include m.desktop{
+        font-size: 2em !important;
+    }
+}
+
+
+.detalle-usuario__nombre{
+    font-size: 1.5em !important;
+    @include m.tablet{
+        font-size: 2.5em !important;
+    }
+}
+
+//cambio de tamaño y color de administracion de usuarios
+.detalle-usuario__btn{
+    font-family: v.$FuturaCondensedBT !important;
+    font-size: 1.3em !important;
+}
+.detalle-usuario__campo-grupo p{
+    font-size: 1.6em;
+}
+.editar_cubetas_totales p{
+    font-size: 1.6em !important;
+}
+.tabla_AprobacionBolsasComposta .TablaAdminBolsas .BtnEnviarEstatus{
+    font-family: v.$FuturaCondensedBT !important;
+    font-size: 1.2em !important;
+}
+.detalle-usuario__header{
+    overflow: hidden;
+}
+.detalle-usuario p{
+    margin-left: 0 !important;
+}
