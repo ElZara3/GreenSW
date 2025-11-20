@@ -1,3 +1,10 @@
+<?php 
+   /*  use ProtoClase\EnvEmail;
+    //Seccion de envio de correos
+    $Email = new EnvEmail(); */
+
+?>
+
     <footer id="fot">
         <div class='formulario'>
             <form class='item1' action='/enviar' method='POST'>

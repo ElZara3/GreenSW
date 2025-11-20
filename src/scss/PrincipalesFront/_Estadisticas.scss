@@ -856,3 +856,96 @@
         }
     }
 }
+
+/* Estilos adicionales para el botón Generar CSV /
+
+.campo-boton {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.btn-generar-csv {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-generar-csv:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-generar-csv:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+.btn-generar-csv i {
+    font-size: 16px;
+}
+
+.btn-aplicar-filtros {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-aplicar-filtros:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-aplicar-filtros:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.btn-aplicar-filtros i {
+    font-size: 16px;
+}
+*/
+#btnGenerarCSV{
+    background-color: v.$CafeClaroTexto !important;
+    margin-top: 2% !important;
+    align-items: unset !important;
+    @include m.desktop{
+        align-items: baseline !important;
+        margin-top: 0% !important;
+        margin-left: 2% !important;
+    }
+}
+
+.estadisticas-contenedor .panel-filtros .form-filtros .filtros-fila .campo-filtro.campo-boton{
+    flex-direction: column !important;
+    @include m.desktop{
+        flex-direction: row !important;
+    }
+}
+.estadisticas-contenedor .panel-filtros .form-filtros .filtros-fila .campo-filtro.campo-boton{
+    @include m.tablet{
+        align-items: anchor-center !important;
+    }
+}

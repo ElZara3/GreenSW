@@ -28,3 +28,10 @@
         width: .85em;
     }
 }
+
+.detalle-usuario__imagen{
+    max-height: 25rem !important;
+    @include m.tablet{
+        max-height: none !important;
+    }
+}

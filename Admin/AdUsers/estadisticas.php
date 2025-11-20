@@ -27,6 +27,9 @@ $filtroUsuario = isset($_POST['usuario']) ? intval($_POST['usuario']) : 0;
 $filtroCentroAcopio = isset($_POST['centro_acopio']) ? intval($_POST['centro_acopio']) : 0;
 $tipoVisualizacion = isset($_POST['tipo_visualizacion']) ? $_POST['tipo_visualizacion'] : 'mensual';
 
+// ===== PROCESAR GENERACIÓN DE CSV =====
+$generarCSV = isset($_POST['generar_csv']) && $_POST['generar_csv'] == '1';
+
 // ===== CONSULTAS PARA ESTADÍSTICAS GLOBALES =====
 
 // Total de cubetas entregadas (global)
@@ -423,6 +426,174 @@ if ($tablaVisitasExiste) {
     }
 }
 
+// ===== FUNCIÓN PARA GENERAR CSV =====
+function generarCSV($db, $filtroFechaInicio, $filtroFechaFin, $filtroUsuario, $filtroCentroAcopio, $tablaVisitasExiste, $nombreTablaVisitas) {
+    // Configurar headers para descarga de CSV
+    $nombreArchivo = 'registro_depositos_' . date('Y-m-d_His') . '.csv';
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+    
+    // Abrir output stream
+    $output = fopen('php://output', 'w');
+    
+    // Agregar BOM para UTF-8
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    
+    // ===== ENCABEZADO DEL CSV =====
+    fputcsv($output, [
+        'ID Visita',
+        'Fecha del Depósito',
+        'ID Usuario',
+        'Nombre Completo',
+        'Teléfono',
+        'Correo',
+        'Dirección',
+        'Centro de Acopio',
+        'Cubetas Entregadas',
+        'Fecha de Registro Usuario'
+    ], ',', '"', '\\');
+    
+    // ===== CONSULTAR DATOS DE VISITAS =====
+    if ($tablaVisitasExiste) {
+        // Si existe la tabla de visitas, obtener cada visita individual
+        $queryVisitas = "SELECT 
+                            v.Id as IdVisita,
+                            v.Fecha as FechaDeposito,
+                            u.Id as IdUsuario,
+                            u.Nombre,
+                            u.ApPat,
+                            u.ApMat,
+                            u.Telefono,
+                            u.Correo,
+                            u.Direccion,
+                            ca.Nombre as CentroAcopio,
+                            v.CubetasEntregadas,
+                            u.FRegistro
+                        FROM 
+                            {$nombreTablaVisitas} v
+                        JOIN 
+                            usuarios u ON v.IdUsuario = u.Id
+                        JOIN 
+                            centrosacopio ca ON v.IdCentroAcopio = ca.Id
+                        WHERE 
+                            v.Fecha BETWEEN ? AND ?";
+        
+        $params = [$filtroFechaInicio, $filtroFechaFin];
+        $types = "ss";
+        
+        if ($filtroUsuario > 0) {
+            $queryVisitas .= " AND u.Id = ?";
+            $params[] = $filtroUsuario;
+            $types .= "i";
+        }
+        
+        if ($filtroCentroAcopio > 0) {
+            $queryVisitas .= " AND ca.Id = ?";
+            $params[] = $filtroCentroAcopio;
+            $types .= "i";
+        }
+        
+        $queryVisitas .= " ORDER BY v.Fecha DESC, u.Nombre ASC";
+        
+        $stmt = mysqli_prepare($db, $queryVisitas);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                $nombreCompleto = trim($row['Nombre'] . ' ' . $row['ApPat'] . ' ' . $row['ApMat']);
+                
+                fputcsv($output, [
+                    $row['IdVisita'],
+                    date('d/m/Y', strtotime($row['FechaDeposito'])),
+                    $row['IdUsuario'],
+                    $nombreCompleto,
+                    $row['Telefono'] ?? '',
+                    $row['Correo'] ?? '',
+                    $row['Direccion'] ?? '',
+                    $row['CentroAcopio'],
+                    $row['CubetasEntregadas'],
+                    date('d/m/Y', strtotime($row['FRegistro']))
+                ], ',', '"', '\\');
+            }
+            
+            mysqli_stmt_close($stmt);
+        }
+    } else {
+        // Si no existe la tabla de visitas, crear un registro por usuario basado en su total
+        $queryUsuarios = "SELECT 
+                            u.Id as IdUsuario,
+                            u.Nombre,
+                            u.ApPat,
+                            u.ApMat,
+                            u.Telefono,
+                            u.Correo,
+                            u.Direccion,
+                            ca.Nombre as CentroAcopio,
+                            u.CubetasTot as TotalCubetas,
+                            u.FRegistro
+                        FROM 
+                            usuarios u
+                        JOIN 
+                            centrosacopio ca ON u.IdCentroAcopio = ca.Id
+                        WHERE 
+                            u.FRegistro BETWEEN ? AND ?
+                            AND u.CubetasTot > 0";
+        
+        $params = [$filtroFechaInicio, $filtroFechaFin];
+        $types = "ss";
+        
+        if ($filtroUsuario > 0) {
+            $queryUsuarios .= " AND u.Id = ?";
+            $params[] = $filtroUsuario;
+            $types .= "i";
+        }
+        
+        if ($filtroCentroAcopio > 0) {
+            $queryUsuarios .= " AND ca.Id = ?";
+            $params[] = $filtroCentroAcopio;
+            $types .= "i";
+        }
+        
+        $queryUsuarios .= " ORDER BY u.CubetasTot DESC";
+        
+        $stmt = mysqli_prepare($db, $queryUsuarios);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                $nombreCompleto = trim($row['Nombre'] . ' ' . $row['ApPat'] . ' ' . $row['ApMat']);
+                
+                fputcsv($output, [
+                    'N/A',
+                    date('d/m/Y', strtotime($row['FRegistro'])),
+                    $row['IdUsuario'],
+                    $nombreCompleto,
+                    $row['Telefono'] ?? '',
+                    $row['Correo'] ?? '',
+                    $row['Direccion'] ?? '',
+                    $row['CentroAcopio'],
+                    $row['TotalCubetas'],
+                    date('d/m/Y', strtotime($row['FRegistro']))
+                ], ',', '"', '\\');
+            }
+            
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    fclose($output);
+    exit();
+}
+
+// ===== GENERAR CSV SI SE SOLICITÓ =====
+if ($generarCSV) {
+    generarCSV($db, $filtroFechaInicio, $filtroFechaFin, $filtroUsuario, $filtroCentroAcopio, $tablaVisitasExiste, $nombreTablaVisitas);
+}
+
 // ===== INCLUIR HEADER SOLO SI ES ARCHIVO DIRECTO =====
 if ($esArchivoDirecto && function_exists('incluirTemplate')) {
     incluirTemplate('header');
@@ -493,7 +664,7 @@ if ($esArchivoDirecto && function_exists('incluirTemplate')) {
             <h2 class="estadisticas-seccion-titulo">Filtrar Estadísticas</h2>
         </div>
         
-        <form method="POST" action="" class="form-filtros">
+        <form method="POST" action="" class="form-filtros" id="formFiltros">
             <div class="filtros-fila">
                 <div class="campo-filtro">
                     <label for="fecha_inicio">Fecha Inicio:</label>
@@ -543,8 +714,12 @@ if ($esArchivoDirecto && function_exists('incluirTemplate')) {
                     <button type="submit" class="btn-aplicar-filtros">
                         <i class="fa fa-filter"></i> Aplicar Filtros
                     </button>
+                    <button type="button" class="btn-aplicar-filtros" id="btnGenerarCSV">
+                        <i class="fa fa-file-excel-o"></i> Generar CSV
+                    </button>
                 </div>
             </div>
+            <input type="hidden" name="generar_csv" id="generar_csv" value="0">
         </form>
     </div>
     
@@ -707,6 +882,23 @@ if ($esArchivoDirecto && function_exists('incluirTemplate')) {
 <script src="../../build_previo/js/app.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ===== MANEJADOR DEL BOTÓN GENERAR CSV =====
+        const btnGenerarCSV = document.getElementById('btnGenerarCSV');
+        const formFiltros = document.getElementById('formFiltros');
+        const inputGenerarCSV = document.getElementById('generar_csv');
+        
+        if (btnGenerarCSV && formFiltros) {
+            btnGenerarCSV.addEventListener('click', function(e) {
+                e.preventDefault();
+                inputGenerarCSV.value = '1';
+                formFiltros.submit();
+                // Resetear el valor después de enviar
+                setTimeout(function() {
+                    inputGenerarCSV.value = '0';
+                }, 100);
+            });
+        }
+        
         // ===== GRÁFICAS =====
         
         // Datos para la gráfica de tendencia
